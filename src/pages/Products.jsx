@@ -1,6 +1,10 @@
 import React from 'react'
 import { Data } from '../data/products'
 import { useLocation,useNavigate } from 'react-router-dom'
+import styles from '../components/Styles.module.css'
+import { NavLink } from 'react-router-dom'
+import Footer from '../components/Footer'
+
 
 const Products = () => {
   const location=useLocation()
@@ -28,59 +32,75 @@ if(sort==="asc"){
 function HandleFilter(key ,value){
   if(value){
      queryparams.set(key,value)
+     
   }else{
     queryparams.delete(key)
   }
   navigate(`?${queryparams.toString()}`)
 }
 
+
+
+
+
+
+
+
+
+
+
   return (
-    <div className='container py-3'>
-      <div className='d-flex justify-content-around align-items-center mx-5'>
+    <>
+  {/* catagory */}
+<div className={styles.pr}>
+<div className='d-flex justify-content-around align-items-center mx-5 ' >
          {/* category filters section start  */}
          <div className='category'>
-       <h3 className='fs-5 text-center  '>Filter by category</h3>
+
         {/* buttons start */}
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button"   onClick={()=>HandleFilter("category","men's clothing")}   class="btn btn-primary">men's clothing</button>
-          <button type="button"   onClick={()=>HandleFilter("category","women's clothing")}  class="btn btn-warning">women's clothing</button>
-          <button type="button"   onClick={()=>HandleFilter("category","electronics")}  class="btn btn-danger">electronics</button>
-          <button type="button"   onClick={()=>HandleFilter("category","jewelery")}  class="btn btn-info">jewelery</button>
-          <button type="button"   onClick={()=>HandleFilter("category","")}  class="btn btn-success">AllProducts</button>
+        <div className="btn-group "  role="group" aria-label="Basic example">
+          <button type="button"   onClick={()=>HandleFilter("category","men's clothing")}   class="border border-0 px-5 bg-black text-light">men's clothing</button>
+          <button type="button"   onClick={()=>HandleFilter("category","women's clothing")}  class="border border-0 px-5 bg-black text-light">women's clothing</button>
+          <button type="button"   onClick={()=>HandleFilter("category","electronics")}  class="border border-0 px-5 bg-black text-light">electronics</button>
+          <button type="button"   onClick={()=>HandleFilter("category","jewelery")}  class="border border-0 px-5 bg-black text-light ">jewelery</button>
+          <button type="button"   onClick={()=>HandleFilter("category","") }  class="border border-0 px-5 bg-black text-light">AllProducts</button>
         </div>
+        {/* <h3 className='fs-5 text-center  '>Filter by category</h3> */}
         {/* buttons end */}
        </div>
        {/* category filters section end */}
 
-
-
-
-
-
-
-
-
-       {/* sorting buttons start */}
-       <div className='sort-products py-3'>
-       <h3 className='fs-5 text-center'>Filter by Price </h3>
-          <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button"  onClick={()=>HandleFilter("sort","asc")} class="btn btn-success">Low to High</button>
-              <button type="button"  onClick={()=>HandleFilter("sort","des")} class="btn btn-danger">High to Low</button>
-            </div>
-       </div>
-       {/* sorting buttons end */}
+      </div>
+  
 </div>
 
-       {/* Products start  */}
 
-       <div className="row gy-3 my-3">
+
+
+
+    {/* sorting buttons start */}
+    <div className={styles.sort}>
+       <h3 className='fs-5 '>Filter by Price </h3>
+          <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button"  onClick={()=>HandleFilter("sort","asc")} class="btn btn-success fs-4"><i class="bi bi-arrow-up"></i> Low to High</button>
+              <button type="button"  onClick={()=>HandleFilter("sort","des")} class="btn btn-danger fs-4"><i class="bi bi-arrow-down"></i> High to Low</button>
+            </div>
+    </div>
+   {/* sorting buttons end */}
+
+   
+    
+       {/* Products start  */}
+       <div className={styles.mr}> 
+
+       <div className="  row  ">
         {
           filteredProducts.length>0?filteredProducts.map((ele)=>(
          
-            <div className='col-sm-12 col-md-4 col-lg-4'>
-              <div className="card shadow p-3 text-center">
-                <img src={ele.image} alt="" width={"100%"} height={"150px"} />
-                <h3 className='card-title py-2'>{ele.title}</h3>
+            <div className='col-sm-12 col-md-4 col-lg-4 my-5 '>
+              <div className=" card shadow p-3 text-center">
+                <img src={ele.image} alt="" width={"100%"} height={"350px"} />
+                <h3 className='card-title py-2'>{ele.title.slice(0,20)}</h3>
                 <h5 className='card-text py-2'>Rs:{ele.price}</h5>
                 <p className='card-text py-2'>{ele.description.slice(0,40)}</p>
               </div>
@@ -89,8 +109,10 @@ function HandleFilter(key ,value){
           )):"No-products Found"
         }
        </div>
+       </div>
        {/* Products end */}
-    </div>
+       <Footer/>
+    </>
   )
 }
 

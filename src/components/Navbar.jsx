@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import Footer from './Footer'
 
 const Navbar = () => {
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
       
     </div>
     
-    <button type="button" className="btn btn-success btn-lg ">Cart</button>
+    <button type="button" className="btn btn-success btn-lg fs-3 "><span><i class="bi bi-cart-check-fill"></i></span>  Cart</button>
   </div>
 </nav>
 

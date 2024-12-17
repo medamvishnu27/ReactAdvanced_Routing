@@ -11,7 +11,7 @@ import Pagenotfound from './pages/Pagenotfound'
 
 const App = () => {
   return (
-    <div>
+    <>
       {/*nav bar components */}
       <Navbar/>
       {/*Routing setup for the app */}
@@ -25,7 +25,7 @@ const App = () => {
         
 
       </Routes>
-    </div>
+    </>
   )
 }
 

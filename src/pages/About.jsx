@@ -1,8 +1,13 @@
 import React from 'react'
+import Footer from '../components/Footer'
 
 const About = () => {
   return (
-    <div>Aboutus</div>
+    <div>
+      <div className="text-center fs-3">Aboutus</div>
+      <Footer/>
+
+    </div>
   )
 }
 
